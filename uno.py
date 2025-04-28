@@ -1,30 +1,31 @@
-notas= []
+notas = []
 
 while True:
     print("Este programa calcula el promedio de notas")
-    nums = input("Ingresá 3 notas por lo menos (o escribí 'fin' para terminar): ")
+    entrada = input("Ingresá 3 notas por lo menos (o escribí 'fin' para terminar): ")
 
-    if nums.lower() == 'fin':
-        break
+    if entrada.lower() == 'fin':
+        if len(notas) >= 3:
+            break
+        else:
+            print("Tenés que ingresar al menos 3 notas antes de terminar.")
+            continue
 
-    try:
-        nota = int(nums)
+    if entrada.isdigit():
+        nota = int(entrada)
 
-        if nota < 0 or nota > 10:
+        if nota < 1 or nota > 10:
             print("Solo notas del 1 al 10.")
             continue
 
         notas.append(nota)
 
-        if len(notas) < 3:
-            print("Tenés que ingresar al menos 3 notas.")
-            continue
+    else:
+        print("Ingresá un número válido o 'fin'.")
 
-    except ValueError:
-        print("Ingresá un número válido o poné 'fin'.")
-
-    if len(notas) >= 3:
-      promedio = sum(notas) / len(notas)
-    print(f"El promedio fue {promedio}")
+if len(notas) >= 3:
+    promedio = sum(notas) / len(notas)
+    print(f"El promedio fue {promedio:.2f}")
 else:
-    print("Minimo 3 notas para sacar el promedio.")
+    print("No se cargaron suficientes notas")
+
